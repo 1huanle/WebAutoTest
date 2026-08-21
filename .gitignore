@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.env
+.idea/
+.playwright-cli/
+reports/allure-results/
+reports/allure-report/
+reports/screenshots/
+reports/videos/
+logs/
+data/login_data.yaml
+
+auth/storage_state.json
+
+tools/allure-2.44.1/
+tools/allure-2.44.1.zip

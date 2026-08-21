@@ -1,0 +1,141 @@
+patient:
+  name: 陈奕源测试
+  dialysis_number: "21000536543"
+pre_dialysis_assessment:
+  editable:
+    temperature: "36"
+    pulse: "80"
+    respiration: "20"
+    respiration_type: 自主呼吸
+    systolic_pressure: "110"
+    diastolic_pressure: "80"
+    blood_pressure_site: 上肢
+    weighing_method: 正常
+    pre_weight: "70"
+    clothing_weight: "0"
+    expected_dehydration_liters: "0"
+    a_thrombus: "/"
+    v_thrombus: "/"
+prescription:
+  machine_number: "58-1"
+  anticoagulant: 叶酸片
+  dialysis_mode: HD
+  dehydration_liters: "1"
+  initial_dose: "4000"
+  maintenance_dose: "3"
+  dialysis_hours: "4"
+  dialyzer: 贝而克-BLS 512SD
+  access_side: 左侧
+  access_type: 动静脉直穿
+  blood_flow: "225"
+  dialysate_flow: "501"
+  formula_sodium: "138"
+  potassium: "2.0"
+  calcium: "1.5"
+  bicarbonate: "31"
+  dialysis_sodium: "137"
+  glucose: 无糖
+  ultrafiltration_curve: "78"
+  sodium_curve: "0"
+  initial_sodium: "78"
+  plasma_volume: "/"
+  chloride: "0"
+  doctor: 陈奕源
+  remark: "/"
+  blood_tubing: 导管
+start_dialysis:
+  treatment_nurse: 陈奕源
+  machine_nurse: 陈奕源
+  priming_tubing_nurse: 陈奕源
+  operation_type: 穿刺
+  puncture_nurse: 陈奕源
+  puncture_method: 扣眼法
+  puncture_needle: A锐针
+  puncture_needle_model: A端-17号
+  puncture_direction: V端向心
+  blood_introduction_flow: "5"
+  admission_method: 步行
+temporary_orders:
+  orders:
+    - fields:
+        order_name: 陈奕源测试
+        order_option: 陈奕源测试mg*
+        single_dose: "10"
+        quantity: "1"
+        administration_route: 皮下注射
+        frequency: 上午
+      expected:
+        order_type: 临时
+        ordering_doctor: 陈奕源
+        order_description: mg* 分散片
+    - fields:
+        order_name: 陈奕源低分子肝素测试
+        order_option: 陈奕源低分子肝素测试12μg*1
+        single_dose: "12"
+        quantity: "1"
+      expected:
+        order_type: 临时
+        ordering_doctor: 陈奕源
+        order_description: 12μg*1 注射剂
+  execution:
+    execution_nurse: 陈奕源
+    verification_nurse: 陈奕源
+    note: ""
+double_check:
+  correct_groups:
+    - dialysis_items
+    - dialysis_parameters
+    - vascular_access
+    - pipeline_connection
+  checker: 陈奕源
+monitoring_records:
+  records:
+    - fields:
+        pulse: "80"
+        respiration: "20"
+        systolic_pressure: "110"
+        diastolic_pressure: "80"
+      symptoms:
+        - 腹痛
+      result: 症状好转,继续脱水
+      monitoring_nurse: 陈奕源
+    - fields:
+        pulse: "80"
+        respiration: "20"
+        systolic_pressure: "110"
+        diastolic_pressure: "80"
+      symptoms:
+        - 腹痛
+      result: 症状好转,继续脱水
+      monitoring_nurse: 陈奕源
+end_dialysis:
+  off_machine_nurse: 陈奕源
+  blood_return_flow: "5"
+post_dialysis_assessment:
+  editable:
+    temperature: "37.8"
+    pulse: "80"
+    respiration: "20"
+    respiration_type: 自主呼吸
+    systolic_pressure: "110"
+    diastolic_pressure: "80"
+    blood_pressure_site: 上肢
+    actual_ultrafiltration_ml: "/"
+    actual_replacement_liters: "/"
+    treatment_hours: "4"
+    treatment_minutes: "0"
+    weighing_method: 正常
+    post_weight: "60"
+    clothing_weight: "0"
+    actual_treatment_liters: "/"
+    waste_liquid_liters: "/"
+    other: "/"
+    maximum_blood_flow: "/"
+    extracorporeal_blood_leak: "/"
+    blood_leak_dose: "/"
+    injury_degree: "/"
+    vascular_location: "/"
+    cause_and_timing: "/"
+treatment_summary:
+  education_content: 测试
+  summary: 测试
