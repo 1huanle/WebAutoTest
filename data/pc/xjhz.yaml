@@ -1,0 +1,47 @@
+# 新增患者用例数据。该用例会点击保存并写入当前环境，请使用测试环境数据。
+basic:
+  patient_type: 血透患者
+  name: 陈奕源自动化测试
+  pinyin_code: cyyzdhcs
+  alias: ""
+  sex: 男
+  id_type: 香港居民身份证
+  id_number: "88888888"
+  birth_date: "1990-01-01"
+  patient_source: 住院
+  medical_record_number: "3013204878"
+  marital_status: 已婚
+  ancestral_home: 江西赣州
+  insurance_location: 江西赣州
+  reimbursement_method: 居民医保
+  medical_insurance_number: "3013204878"
+  height_cm: "170"
+  initial_weight_kg: "60"
+  blood_type: A
+  rh: 阴性
+  education_level: 博士后
+  occupation: 军人
+  smoking: 无
+  vision_impairment: 无
+  drinking: 无
+  religious_belief: 无
+  nationality: 汉族
+  postal_code: "34200"
+
+contact:
+  personal_phone: "16666666666"
+  family_name: "1111"
+  family_relation: 父子
+  family_phone: "11111111111"
+  home_address: "1"
+  email: 3013204878@qq.com
+
+treatment:
+  received_date: "2026-08-24"
+  infection: 无
+
+notes:
+  diagnosis: ""
+  note: 自动化测试患者
+  allergy_history: ""
+  tumor_history: ""
