@@ -1,0 +1,6 @@
+login_url: https://yunjingzhi.com/yunjingservice/login.jsp?origin=txjl_m
+success_paths:
+  - /yunjingservice/txform/mtxform.shtml
+  - /yunjingservice/txform/mtxform_doctor.shtml
+username_env: MOBILE_USERNAME
+password_env: MOBILE_PASSWORD
