@@ -3,7 +3,7 @@ from urllib.parse import urlparse
 from playwright.sync_api import sync_playwright
 
 from config.config import Config
-from pages.login_page import LoginPage
+from pages.pc.login_page import LoginPage
 from utils.auth_state import STORAGE_STATE_FILE
 
 def is_management_page_url(url: str) -> bool:
