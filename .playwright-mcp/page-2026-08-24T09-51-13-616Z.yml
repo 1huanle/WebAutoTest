@@ -1,0 +1,66 @@
+- generic [active] [ref=f7e1]:
+  - text: 
+  - generic [ref=f7e2]:
+    - generic [ref=f7e3]:
+      - link [ref=f7e5] [cursor=pointer]:
+        - /url: javascript:void(0);
+        - img "返回" [ref=f7e6]
+        - text: 返回
+      - text: 
+    - generic [ref=f7e7]:
+      - list [ref=f7e8]:
+        - listitem [ref=f7e9]:
+          - text: 耗材出库
+          - generic [ref=f7e10]: 
+          - text: 
+        - listitem [ref=f7e11]: 2026-08-24
+      - text:    
+    - generic [ref=f7e12]:
+      - text: 
+      - generic [ref=f7e14]: 
+  - table [ref=f7e16]:
+    - rowgroup [ref=f7e17]:
+      - row [ref=f7e18]:
+        - cell "头像 测试号527 [透析号：21000536522] [机号：2L3]HD" [ref=f7e19]:
+          - img "头像" [ref=f7e21]
+          - generic [ref=f7e22]:
+            - link "测试号527" [ref=f7e24] [cursor=pointer]:
+              - /url: javascript:void(0);
+            - generic [ref=f7e25]: "[透析号：21000536522]"
+            - generic [ref=f7e26]: "[机号：2L3]HD"
+      - row [ref=f7e27]:
+        - cell "[出生日期：1964-04-02] 62岁" [ref=f7e28]:
+          - generic [ref=f7e29]:
+            - generic [ref=f7e30]: "[出生日期：1964-04-02]"
+            - generic [ref=f7e31]: 62岁
+  - table [ref=f7e32]:
+    - rowgroup [ref=f7e33]:
+      - row [ref=f7e34]:
+        - cell "出库耗材列表" [ref=f7e35]
+        - cell [ref=f7e36]:
+          - button "套餐设置" [ref=f7e37] [cursor=pointer]
+          - button "添加" [ref=f7e38] [cursor=pointer]
+          - button "出库退库" [ref=f7e39] [cursor=pointer]
+  - table [ref=f7e40]:
+    - rowgroup [ref=f7e41]:
+      - row [ref=f7e42]:
+        - cell [ref=f7e43]:
+          - checkbox [ref=f7e44]
+        - cell "类型名称" [ref=f7e45]
+        - cell "规格名称" [ref=f7e46]
+        - cell "实际出库数量" [ref=f7e47]
+        - cell "退库数量" [ref=f7e48]
+    - rowgroup [ref=f7e49]:
+      - row [ref=f7e50]:
+        - cell [ref=f7e51]
+      - row [ref=f7e52]:
+        - cell [ref=f7e53]
+      - row [ref=f7e54]:
+        - cell [ref=f7e55]
+      - row [ref=f7e56]:
+        - cell [ref=f7e57]
+      - row [ref=f7e58]:
+        - cell [ref=f7e59]
+      - row [ref=f7e60]:
+        - cell [ref=f7e61]
+  - text: − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − + − +           

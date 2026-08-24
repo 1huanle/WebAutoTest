@@ -19,7 +19,7 @@ class Config:
         ENV, ENVIRONMENT_URLS["online"]
     )
     BROWSER = os.getenv("BROWSER", "chromium")
-    HEADLESS = os.getenv("HEADLESS", "true").lower() == "true"
+    HEADLESS = os.getenv("HEADLESS", "false").lower() == "true"
     RECORD_VIDEO = os.getenv("RECORD_VIDEO", "false").lower() == "true"
     DEFAULT_TIMEOUT = int(os.getenv("DEFAULT_TIMEOUT", "30000"))
     NAVIGATION_TIMEOUT = int(os.getenv("NAVIGATION_TIMEOUT", "60000"))

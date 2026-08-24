@@ -1,0 +1,27 @@
+[ 1474311ms] [LOG] 选择模块：耗材出库 @ https://yunjingzhi.com/yunjingservice/txform/mtxform_hzzlxj.shtml?tx_number=21000536522&tx_name=%E6%B5%8B%E8%AF%95%E5%8F%B7527&tx_time=2026-08-24:1499
+[ 1474313ms] [LOG] 跳转模块tx_module：耗材出库 耗材出库 @ https://yunjingzhi.com/yunjingservice/txform/mtxform_hzzlxj.shtml?tx_number=21000536522&tx_name=%E6%B5%8B%E8%AF%95%E5%8F%B7527&tx_time=2026-08-24:1507
+[ 1474663ms] [LOG] 0 @ https://yunjingzhi.com/yunjingservice/txform/moutStock.shtml?tx_number=21000536522&tx_name=%E6%B5%8B%E8%AF%95%E5%8F%B7527&tx_time=2026-08-24:896
+[ 1474664ms] [LOG] 进入页面加载模块： 耗材出库 @ https://yunjingzhi.com/yunjingservice/txform/moutStock.shtml?tx_number=21000536522&tx_name=%E6%B5%8B%E8%AF%95%E5%8F%B7527&tx_time=2026-08-24:1532
+[ 1474664ms] [LOG] 修改后模块： 耗材出库 @ https://yunjingzhi.com/yunjingservice/txform/moutStock.shtml?tx_number=21000536522&tx_name=%E6%B5%8B%E8%AF%95%E5%8F%B7527&tx_time=2026-08-24:1534
+[ 1475742ms] [LOG] 11621_WX_21000536522连接成功，现在你可以发送信息啦！ @ https://yjcdn.yunjingzhi.com/yunjingservice/js/websocket/websocket_message.js:96
+[ 1475757ms] [LOG] 收到服务器回应消息：{"code":"0","data":[]} @ https://yjcdn.yunjingzhi.com/yunjingservice/js/websocket/websocket_message.js:103
+[ 1595735ms] [ERROR] 11621_WX_21000536522连接已经断开 @ https://yjcdn.yunjingzhi.com/yunjingservice/js/websocket/websocket_message.js:99
+[ 1809982ms] [LOG] 选择模块：评估工具 @ https://yunjingzhi.com/yunjingservice/txform/moutStock.shtml?tx_number=21000536522&tx_name=%E6%B5%8B%E8%AF%95%E5%8F%B7527&tx_time=2026-08-24:1538
+[ 1809984ms] [LOG] 跳转模块tx_module：评估工具 评估工具 @ https://yunjingzhi.com/yunjingservice/txform/moutStock.shtml?tx_number=21000536522&tx_name=%E6%B5%8B%E8%AF%95%E5%8F%B7527&tx_time=2026-08-24:1546
+[ 1810302ms] [LOG] 0 @ https://yunjingzhi.com/yunjingservice/txform/mtxform_hzpg.shtml?tx_number=21000536522&tx_name=%E6%B5%8B%E8%AF%95%E5%8F%B7527&tx_time=2026-08-24:898
+[ 1810303ms] [LOG] 进入页面加载模块： 评估工具 @ https://yunjingzhi.com/yunjingservice/txform/mtxform_hzpg.shtml?tx_number=21000536522&tx_name=%E6%B5%8B%E8%AF%95%E5%8F%B7527&tx_time=2026-08-24:1534
+[ 1810303ms] [LOG] 修改后模块： 评估工具 @ https://yunjingzhi.com/yunjingservice/txform/mtxform_hzpg.shtml?tx_number=21000536522&tx_name=%E6%B5%8B%E8%AF%95%E5%8F%B7527&tx_time=2026-08-24:1536
+[ 1811382ms] [LOG] 11621_WX_21000536522连接成功，现在你可以发送信息啦！ @ https://yjcdn.yunjingzhi.com/yunjingservice/js/websocket/websocket_message.js:96
+[ 1811397ms] [LOG] 收到服务器回应消息：{"code":"0","data":[]} @ https://yjcdn.yunjingzhi.com/yunjingservice/js/websocket/websocket_message.js:103
+[ 1818702ms] [LOG] 选择模块：患者信息 @ https://yunjingzhi.com/yunjingservice/txform/mtxform_hzpg.shtml?tx_number=21000536522&tx_name=%E6%B5%8B%E8%AF%95%E5%8F%B7527&tx_time=2026-08-24:1540
+[ 1818703ms] [LOG] 跳转模块tx_module：患者信息 患者信息 @ https://yunjingzhi.com/yunjingservice/txform/mtxform_hzpg.shtml?tx_number=21000536522&tx_name=%E6%B5%8B%E8%AF%95%E5%8F%B7527&tx_time=2026-08-24:1548
+[ 1819237ms] [LOG] 0 @ https://yunjingzhi.com/yunjingservice/txform/mtxform_hzdetail.shtml?tx_number=21000536522&tx_name=%E6%B5%8B%E8%AF%95%E5%8F%B7527&tx_time=2026-08-24:858
+[ 1819238ms] [LOG] 进入页面加载模块： 患者信息 @ https://yunjingzhi.com/yunjingservice/txform/mtxform_hzdetail.shtml?tx_number=21000536522&tx_name=%E6%B5%8B%E8%AF%95%E5%8F%B7527&tx_time=2026-08-24:1494
+[ 1819238ms] [LOG] 修改后模块： 患者信息 @ https://yunjingzhi.com/yunjingservice/txform/mtxform_hzdetail.shtml?tx_number=21000536522&tx_name=%E6%B5%8B%E8%AF%95%E5%8F%B7527&tx_time=2026-08-24:1496
+[ 1819293ms] [LOG] 已同步数据库患者年龄 @ https://yunjingzhi.com/yunjingservice/txform/mtxform_hzdetail.shtml?tx_number=21000536522&tx_name=%E6%B5%8B%E8%AF%95%E5%8F%B7527&tx_time=2026-08-24:5885
+[ 1819339ms] [LOG] vheight:917 @ https://yunjingzhi.com/yunjingservice/txform/mtxform_hzdetail.shtml?tx_number=21000536522&tx_name=%E6%B5%8B%E8%AF%95%E5%8F%B7527&tx_time=2026-08-24:2520
+[ 1820307ms] [LOG] 11621_WX_21000536522连接成功，现在你可以发送信息啦！ @ https://yjcdn.yunjingzhi.com/yunjingservice/js/websocket/websocket_message.js:96
+[ 1820322ms] [LOG] 收到服务器回应消息：{"code":"0","data":[]} @ https://yjcdn.yunjingzhi.com/yunjingservice/js/websocket/websocket_message.js:103
+[ 1831062ms] [LOG] 11621_WX连接成功，现在你可以发送信息啦！ @ https://yjcdn.yunjingzhi.com/yunjingservice/js/websocket/websocket_message.js?t=202509:96
+[ 1831077ms] [LOG] 收到服务器回应消息：{"code":"0","data":[]} @ https://yjcdn.yunjingzhi.com/yunjingservice/js/websocket/websocket_message.js?t=202509:103
+[ 1951055ms] [ERROR] 11621_WX连接已经断开 @ https://yjcdn.yunjingzhi.com/yunjingservice/js/websocket/websocket_message.js?t=202509:99
