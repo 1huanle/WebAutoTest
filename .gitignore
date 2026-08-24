@@ -9,7 +9,7 @@ reports/allure-report/
 reports/screenshots/
 reports/videos/
 logs/
-data/login_data.yaml
+data/*/login_data.yaml
 
 auth/storage_state.json
 
