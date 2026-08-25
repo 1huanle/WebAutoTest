@@ -8,7 +8,7 @@ import yaml
 from pages.pc.hzgl import HzglPage
 
 
-XJHZ_DATA_FILE = Path(__file__).resolve().parents[2] / "data" / "pc" / "xjhz.yaml"
+XJHZ_DATA_FILE = Path(__file__).resolve().parents[3] / "data" / "pc" / "xjhz.yaml"
 
 
 def load_xjhz_data() -> dict:

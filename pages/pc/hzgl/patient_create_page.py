@@ -326,7 +326,7 @@ class PatientCreatePage(BasePage):
 
         try:
             with self.page.expect_navigation(
-                url="**/manage/hz/userMessage.shtml?tx_number=*",
+                url="**/hz/userMessage.shtml?tx_number=*",
                 wait_until="domcontentloaded",
                 timeout=Config.NAVIGATION_TIMEOUT,
             ):
