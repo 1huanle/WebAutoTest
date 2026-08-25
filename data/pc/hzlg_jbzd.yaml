@@ -1,0 +1,8 @@
+# PC 端患者疾病诊断用例数据。诊断保存会写入当前测试环境。
+patient:
+  name: 陈奕源自动化测试
+
+diagnosis:
+  doctor: 陈奕源
+  diagnosis_category: 常用诊断
+  custom_diagnosis: 陈奕源诊断测试

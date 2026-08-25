@@ -23,6 +23,15 @@ class PatientCard:
     def is_selected(self) -> bool:
         return self.root.locator('input[type="checkbox"]').is_checked()
 
+    def get_dialysis_number(self) -> str:
+        """读取当前患者卡片中的动态透析号。"""
+        dialysis_number = self.root.locator('input[type="checkbox"]').get_attribute(
+            "value"
+        )
+        if not dialysis_number:
+            raise AssertionError("患者卡片中未找到透析号")
+        return dialysis_number
+
     def open_detail(self) -> PatientDetailDialog:
         """打开当前患者的详情弹窗。"""
         self.root.get_by_text("患者详情", exact=True).click()
@@ -39,10 +48,12 @@ class PatientListSection:
         self.page = page
 
     def _card(self, identifier: str) -> Locator:
-        card = self.page.locator(self.CARD_SELECTOR).filter(has_text=identifier)
-        if card.count() == 0:
-            raise AssertionError(f"患者列表中未找到匹配项：{identifier}")
-        return card.first
+        card = self.page.locator(self.CARD_SELECTOR).filter(has_text=identifier).first
+        try:
+            expect(card).to_be_visible()
+        except AssertionError:
+            raise AssertionError(f"患者列表中未找到匹配项：{identifier}") from None
+        return card
 
     def by_name(self, name: str) -> PatientCard:
         """按患者姓名定位患者卡片。"""
