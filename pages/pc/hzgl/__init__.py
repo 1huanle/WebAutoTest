@@ -2,7 +2,7 @@
 
 from .hzgl_page import HzglPage
 from .hzgl_jbzd_pages import DiagnosisFormSection, DiagnosisListSection, HzglJbzdPage
-from .hzgl_yz import HzglYzPage, YzFormSection, YzListSection
+from .hzgl_yz import HzglYzPage, YzFormSection, YzListSection, YzPushFormSection
 from .patient_detail_dialog import PatientDetailDialog
 from .patient_filter_section import PatientFilterSection
 from .patient_list_section import PatientCard, PatientListSection
@@ -16,6 +16,7 @@ __all__ = [
     "HzglYzPage",
     "YzListSection",
     "YzFormSection",
+    "YzPushFormSection",
     "PatientCard",
     "PatientDetailDialog",
     "PatientCreatePage",

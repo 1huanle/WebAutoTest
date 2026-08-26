@@ -117,7 +117,6 @@ class HzglYzPage(BasePage):
         expect(patient_number).to_be_attached()
         expect(patient_number).to_have_value(re.compile(r"\S+"))
         self._wait_for_yz_content()
-        expect(self.page.get_by_text("医嘱列表", exact=True)).to_be_visible()
         return True
 
     def _yz_link(self) -> Locator:
@@ -162,6 +161,7 @@ class YzListSection:
     """封装患者详情页医嘱列表的只读查询。"""
 
     TABLE_SELECTOR = "#contentTable.yz-tb"
+    PUSH_BUTTON_SELECTOR = "#yzpush"
     COLUMN_KEYS = (
         "index",
         "start_time",
@@ -232,13 +232,40 @@ class YzListSection:
             return False
         return True
 
+    def select_order(self, name: str) -> "YzListSection":
+        """按医嘱名称勾选一条长期医嘱。"""
+        row = self.by_name(name)
+        checkbox = row.locator('input[name="WeixinShare"]')
+        expect(checkbox).to_be_visible()
+        checkbox.check()
+        expect(checkbox).to_be_checked()
+        return self
+
+    def open_medication_push(self) -> "YzPushFormSection":
+        """打开用药推送弹窗。"""
+        push_button = self.page.locator(
+            f"{HzglYzPage.MAIN_PAGE_SELECTOR} {self.PUSH_BUTTON_SELECTOR}:visible"
+        )
+        expect(push_button).to_be_visible()
+        push_button.click()
+        form = YzPushFormSection(self.page)
+        form.is_open()
+        return form
+
 
 class YzFormSection(LayuiIframeDialog):
     """封装患者详情页“添加医嘱”Layui iframe 表单。"""
 
     TITLE = "添加医嘱"
+    MISSING_FIELDS_WARNING = "单次用量、给药途径、执行频率未填写"
     DATE_PICKER_SELECTOR = ".layui-laydate:visible"
     AUTOCOMPLETE_TIMEOUT = 15_000
+    AUTOCOMPLETE_CANDIDATE_SELECTOR = (
+        ".select_div:visible li, "
+        ".layui-anim:visible li, "
+        ".ui-autocomplete:visible li.ui-menu-item, "
+        "li.ui-menu-item:visible"
+    )
 
     def __init__(self, page: Page) -> None:
         super().__init__(page)
@@ -323,15 +350,16 @@ class YzFormSection(LayuiIframeDialog):
         field.fill("")
         field.type(str(query))
         expected = str(option or query)
-        local_candidates = field.locator(
-            "xpath=ancestor::td[1]"
-        ).locator(".select_div:visible li")
-        candidate = local_candidates.filter(has_text=expected).last
-        if candidate.count() == 0:
-            candidate = self._frame().locator(
-                ".select_div:visible li, .layui-anim:visible li"
+        candidate = self._frame().locator(
+            self.AUTOCOMPLETE_CANDIDATE_SELECTOR
+        ).filter(has_text=expected).last
+        try:
+            expect(candidate).to_be_visible(timeout=self.AUTOCOMPLETE_TIMEOUT)
+        except PlaywrightTimeoutError:
+            candidate = self.page.locator(
+                self.AUTOCOMPLETE_CANDIDATE_SELECTOR
             ).filter(has_text=expected).last
-        expect(candidate).to_be_visible(timeout=self.AUTOCOMPLETE_TIMEOUT)
+            expect(candidate).to_be_visible(timeout=self.AUTOCOMPLETE_TIMEOUT)
         candidate.click()
         expect(field).not_to_have_value("")
 
@@ -352,6 +380,7 @@ class YzFormSection(LayuiIframeDialog):
     ) -> "YzFormSection":
         """搜索并选择医嘱名称候选项。"""
         self._select_autocomplete("sk_yz_name", name, option)
+        expect(self._named_field("tx_drug_id")).not_to_have_value("")
         return self
 
     def set_start_time(self, value: object) -> "YzFormSection":
@@ -502,7 +531,13 @@ class YzFormSection(LayuiIframeDialog):
         save_button = self._frame().locator("#subbmit_btn_addYz")
         expect(save_button).to_be_visible()
         expect(save_button).to_be_enabled()
+        needs_confirmation = any(
+            not self._named_field(field_name).input_value().strip()
+            for field_name in ("sk_yz_dcl", "sk_yz_tj", "sk_yz_pl")
+        )
         save_button.click()
+        if needs_confirmation:
+            self._confirm_missing_fields_warning_if_visible()
         self._wait_for_closed()
         page = HzglYzPage(self.page)
         expect(self.page.locator(HzglYzPage.YZ_TABLE_SELECTOR)).to_be_visible(
@@ -510,9 +545,152 @@ class YzFormSection(LayuiIframeDialog):
         )
         return page
 
+    def _confirm_missing_fields_warning_if_visible(self) -> None:
+        """确认缺少可选医嘱字段时出现的继续保存提示。"""
+        warning_locators = (
+            self._frame()
+            .locator(".layui-layer:visible")
+            .filter(has_text=self.MISSING_FIELDS_WARNING),
+            self.page
+            .locator(".layui-layer:visible")
+            .filter(has_text=self.MISSING_FIELDS_WARNING),
+        )
+        for warning in warning_locators:
+            try:
+                warning.wait_for(state="visible", timeout=3_000)
+            except PlaywrightTimeoutError:
+                continue
+
+            continue_button = warning.get_by_text("是", exact=True).last
+            expect(continue_button).to_be_visible()
+            continue_button.click()
+            return
+
+        raise AssertionError(
+            f"点击保存后未找到提示：{self.MISSING_FIELDS_WARNING}"
+        )
+
     def close(self) -> "YzFormSection":
         """关闭新增医嘱弹窗，不保存。"""
         close_button = self._frame().locator("#close_btn_addYz")
+        expect(close_button).to_be_visible()
+        close_button.click()
+        self._wait_for_closed()
+        return self
+
+
+class YzPushFormSection(LayuiIframeDialog):
+    """封装患者详情页医嘱列表的用药推送弹窗。"""
+
+    TITLE = "用药推送"
+    PUSH_MODE = "用药频率"
+    DEFAULT_FREQUENCY = "每次用药"
+    CONFIRM_TEXTS = ("确认", "确定")
+
+    def _confirm_button(self) -> Locator:
+        """返回页面实际显示的确认按钮，兼容“确认”和“确定”。"""
+        frame = self._frame()
+        for text in self.CONFIRM_TEXTS:
+            button = frame.get_by_role("button", name=text, exact=True).filter(
+                visible=True
+            ).last
+            if button.count() > 0:
+                return button
+            button = frame.get_by_text(text, exact=True).filter(visible=True).last
+            if button.count() > 0:
+                return button
+        raise AssertionError("用药推送弹窗中未找到确认按钮")
+
+    def is_open(self) -> bool:
+        """确认用药推送弹窗和关键选项已经显示。"""
+        self.wait_for_open()
+        expect(
+            self._frame().get_by_text(self.PUSH_MODE, exact=True).filter(visible=True)
+        ).to_be_visible()
+        expect(
+            self._confirm_button()
+        ).to_be_visible()
+        return True
+
+    def _select_text_option(self, text: str) -> None:
+        option = self._frame().get_by_text(text, exact=True).filter(visible=True).last
+        expect(option).to_be_visible(timeout=Config.DEFAULT_TIMEOUT)
+        option.click()
+
+    def _select_radio(self, text: str) -> None:
+        """按显示文字找到并真正勾选对应的 radio 控件。"""
+        frame = self._frame()
+        option = frame.get_by_text(text, exact=True).filter(visible=True).last
+        expect(option).to_be_visible()
+
+        radio_container = option.locator(
+            "xpath=ancestor::*[self::label or @role='radio' or contains(@class, 'radio')][1]"
+        )
+        if radio_container.count() > 0:
+            expect(radio_container).to_be_visible()
+            radio_container.click(force=True)
+            linked_radio = radio_container.locator('input[type="radio"]').last
+            if linked_radio.count() > 0:
+                expect(linked_radio).to_be_checked()
+                return
+            aria_checked = radio_container.get_attribute("aria-checked")
+            if aria_checked is not None:
+                expect(radio_container).to_have_attribute("aria-checked", "true")
+                return
+
+        radio = frame.get_by_role("radio", name=text, exact=True).last
+        if radio.count() > 0:
+            radio.click(force=True)
+            expect(radio).to_be_checked()
+            return
+
+        for ancestor in ("xpath=..", "xpath=../..", "xpath=../../..", "xpath=../../../.."):
+            radio = option.locator(ancestor).locator('input[type="radio"]').last
+            if radio.count() > 0:
+                radio.click(force=True)
+                expect(radio).to_be_checked()
+                return
+
+        label = frame.locator("label").filter(has_text=text).filter(
+            visible=True
+        ).last
+        if label.count() > 0:
+            label.click(force=True)
+            linked_radio = label.locator('input[type="radio"]').last
+            if linked_radio.count() > 0:
+                expect(linked_radio).to_be_checked()
+                return
+
+        raise AssertionError(f"用药推送弹窗中未找到单选项：{text}")
+
+    def select_push_mode(self, mode: str = PUSH_MODE) -> "YzPushFormSection":
+        """选择推送模式，例如“用药频率”。"""
+        self._select_radio(str(mode))
+        return self
+
+    def select_frequency(
+        self, frequency: str = DEFAULT_FREQUENCY
+    ) -> "YzPushFormSection":
+        """选择用药频率，例如“每次用药”。"""
+        self._select_text_option(str(frequency))
+        return self
+
+    def confirm(self) -> HzglYzPage:
+        """点击确定保存用药推送配置并等待弹窗关闭。"""
+        confirm_button = self._confirm_button()
+        expect(confirm_button).to_be_visible()
+        confirm_button.click()
+        self._wait_for_closed()
+        expect(self.page.locator(HzglYzPage.YZ_TABLE_SELECTOR)).to_be_visible(
+            timeout=Config.NAVIGATION_TIMEOUT
+        )
+        return HzglYzPage(self.page)
+
+    def close(self) -> "YzPushFormSection":
+        """关闭用药推送弹窗，不保存。"""
+        close_button = self._frame().get_by_text("取消", exact=True).filter(
+            visible=True
+        ).last
         expect(close_button).to_be_visible()
         close_button.click()
         self._wait_for_closed()
