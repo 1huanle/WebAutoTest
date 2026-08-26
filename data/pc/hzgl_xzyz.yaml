@@ -1,0 +1,12 @@
+patient:
+  name: 陈奕源自动化测试
+  dialysis_number: "21000536567"
+
+order:
+  order_name: 陈奕源自动化测试
+  quantity: "1"
+  doctor: 陈奕源
+
+push:
+  mode: 用药频率
+  frequency: 每次用药
